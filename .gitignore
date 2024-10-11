@@ -1,2 +1,3 @@
-/test_libft
+test_libft
 libft.a
+*.o
