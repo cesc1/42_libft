@@ -1,3 +1,5 @@
-test_libft
-libft.a
+test_libft*
+*.a
 *.o
+main.c
+*.out
