@@ -3,3 +3,4 @@ test_libft*
 *.o
 main.c
 *.out
+*.qmd
