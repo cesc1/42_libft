@@ -4,8 +4,51 @@
 - [1 About](#1-about)
 - [2 Documentation](#2-documentation)
   - [2.1 libc functions](#21-libc-functions)
+    - [ft_isalpha](#ft_isalpha)
+    - [ft_isdigit](#ft_isdigit)
+    - [ft_isalnum](#ft_isalnum)
+    - [ft_isascii](#ft_isascii)
+    - [ft_isprint](#ft_isprint)
+    - [ft_strlen](#ft_strlen)
+    - [ft_memset](#ft_memset)
+    - [ft_bzero](#ft_bzero)
+    - [ft_memcpy](#ft_memcpy)
+    - [ft_memmove](#ft_memmove)
+    - [ft_strlcpy](#ft_strlcpy)
+    - [ft_strlcat](#ft_strlcat)
+    - [ft_toupper](#ft_toupper)
+    - [ft_tolower](#ft_tolower)
+    - [ft_strchr](#ft_strchr)
+    - [ft_strrchr](#ft_strrchr)
+    - [ft_strncmp](#ft_strncmp)
+    - [ft_memchr](#ft_memchr)
+    - [ft_memcmp](#ft_memcmp)
+    - [ft_strnstr](#ft_strnstr)
+    - [ft_atoi](#ft_atoi)
+    - [ft_calloc](#ft_calloc)
+    - [ft_strdup](#ft_strdup)
   - [2.2 Additional functions](#22-additional-functions)
+    - [ft_substr](#ft_substr)
+    - [ft_strjoin](#ft_strjoin)
+    - [ft_strtrim](#ft_strtrim)
+    - [ft_split](#ft_split)
+    - [ft_itoa](#ft_itoa)
+    - [ft_strmapi](#ft_strmapi)
+    - [ft_striteri](#ft_striteri)
+    - [ft_putchar_fd](#ft_putchar_fd)
+    - [ft_putstr_fd](#ft_putstr_fd)
+    - [ft_putendl_fd](#ft_putendl_fd)
+    - [ft_putnbr_fd](#ft_putnbr_fd)
   - [2.3 List functions](#23-list-functions)
+    - [ft_lstnew](#ft_lstnew)
+    - [ft_lstadd_front](#ft_lstadd_front)
+    - [ft_lstsize](#ft_lstsize)
+    - [ft_lstlast](#ft_lstlast)
+    - [ft_lstadd_back](#ft_lstadd_back)
+    - [ft_lstdelone](#ft_lstdelone)
+    - [ft_lstclear](#ft_lstclear)
+    - [ft_lstiter](#ft_lstiter)
+    - [ft_lstmap](#ft_lstmap)
 
 # 1 About
 
@@ -373,109 +416,191 @@ use in future projects.
 
 ### ft_strmapi
 
-- **Description:**
+`char *ft_strmapi(char const *s, char (*f)(unsigned int, char))`
+
+- **Description:** Apply a function that process every char of a string
+  `s`, transforming it (`s` doesn’t change) and returning a new string
 - **Arguments:**
-- **Return:**
-- **Requires:**
+  - `s (char const *)`: String to transform
+  - `char (*f) (unsigned int, char)`: Function to apply. The first
+    argument of `f` needs to be an idx of the string, and the second the
+    character of the string. Returns a character
+- **Return:** (`char *`) Allocated string, NULL if memory allocation
+  fails
+- **Requires:** `stdlib::malloc`
 
 ### ft_striteri
 
-- **Description:**
+`void ft_striteri(char *s, void (*f)(unsigned int, char*))`
+
+- **Description:** Apply a function that process every char of a string
+  `s`, transforming it (`s` does change)
 - **Arguments:**
-- **Return:**
-- **Requires:**
+  - `s (char *)`: String to transform
+  - `void (*f) (unsigned int, char *)`: Function to apply. The first
+    argument of `f` needs to be an idx of the string, and the second a
+    pointer to a character, that the function will modify
+- **Return:** (`void`) String `s` will be modified
+- **Requires:** None
 
 ### ft_putchar_fd
 
-- **Description:**
+`int ft_putchar_fd(char c, int fd)`
+
+- **Description:** Send `c` to a file descriptor (1 == shell)
 - **Arguments:**
-- **Return:**
-- **Requires:**
+  - `c (char)`: Character to send/print
+  - `fd (int)`: File descriptor to write
+- **Return:** (`int`) It returns 1 if the operation was successful, 0
+  otherwise
+- **Requires:** `unistd::write`
 
 ### ft_putstr_fd
 
-- **Description:**
+`int ft_putstr_fd(char *s, int fd)`
+
+- **Description:** Send string `s` to a file descriptor (1 == shell)
 - **Arguments:**
-- **Return:**
-- **Requires:**
+  - `s (char *)`: String to send/print
+  - `fd (int)`: File descriptor to write
+- **Return:** (`int`) It returns 1 if the operation was successful, 0
+  otherwise
+- **Requires:** `libft::ft_putchar_fd` (`unistd::write`)
 
 ### ft_putendl_fd
 
-- **Description:**
+`int ft_putendl_fd(char *s, int fd)`
+
+- **Description:** Send string `s` and `'\n'` to a file descriptor (1 ==
+  shell)
 - **Arguments:**
-- **Return:**
-- **Requires:**
+  - `s (char *)`: String to send/print
+  - `fd (int)`: File descriptor to write
+- **Return:** (`int`) It returns 1 if the operation was successful, 0
+  otherwise
+- **Requires:** `libft::ft_putendl_fd` (`unistd::write`)
 
 ### ft_putnbr_fd
 
-- **Description:**
+`int ft_putnbr_fd(int n, int fd)`
+
+- **Description:** Send the number `n` to a file descriptor (1 == shell)
 - **Arguments:**
-- **Return:**
-- **Requires:**
+  - `n (int)`: Number to send
+  - `fd (int)`: File descriptor to write
+- **Return:** (`int`) It returns 1 if the operation was successful, 0
+  otherwise
+- **Requires:** `libft::ft_putchar_fd` (`unistd::write`)
 
 ## 2.3 List functions
 
-Check type `t_list` in [libft.h](libft.h).
+Check type `t_list` in [libft.h](libft.h)
 
 ### ft_lstnew
 
-- **Description:**
+`t_list *ft_lstnew(void *content)`
+
+- **Description:** Allocates the first node of the list, initializing
+  the content and the next pointer is `NULL`
 - **Arguments:**
-- **Return:**
-- **Requires:**
+  - `content (void *)`: The content of the node
+- **Return:** A pointer to the new list (node)
+- **Requires:** `stdlib::malloc`, `libft::t_list` (`const libft::NULL`)
 
 ### ft_lstadd_front
 
-- **Description:**
+`void ft_lstadd_front(t_list **lst, t_list *new)`
+
+- **Description:** Add the node `new` at the start of `lst`
 - **Arguments:**
-- **Return:**
-- **Requires:**
+  - `lst (t_list **)`: Double pointer to the first node of the list
+  - `new (t_list *)`: Pointer to a node to add at the start of `lst`
+- **Return:** (`void`)
+- **Requires:** `libft::t_list`
 
 ### ft_lstsize
 
-- **Description:**
+`int ft_lstsize(t_list *lst)`
+
+- **Description:** Count the number of nodes of a list
 - **Arguments:**
-- **Return:**
-- **Requires:**
+  - \``lst (t_list *)`: Pointer to the start of the list
+- **Return:** (`int`) Number of nodes of the list
+- **Requires:** `libft::t_list`
 
 ### ft_lstlast
 
-- **Description:**
+`t_list *ft_lstlast(t_list *lst)`
+
+- **Description:** Returns the last node of a list
 - **Arguments:**
-- **Return:**
-- **Requires:**
+  - `lst (t_list *)`: The first node of the list
+- **Return:** (`t_list *`) Last node of the list
+- **Requires:** `libft::t_list`
 
 ### ft_lstadd_back
 
-- **Description:**
+`void ft_lstadd_back(t_list **lst, t_list *new)`
+
+- **Description:** Add the node `new` at the end of `lst`
 - **Arguments:**
-- **Return:**
-- **Requires:**
+  - `lst (t_list **)`: Double pointer to the first node of the list
+  - `new (t_list *)`: Pointer to a node to add at the end of `lst`
+- **Return:** (`void`)
+- **Requires:** `libft::t_list`
 
 ### ft_lstdelone
 
-- **Description:**
+`void ft_lstdelone(t_list *lst, void (*del)(void *))`
+
+- **Description:** Deletes a node from a list, freeing the memory
+  allocated using the function `del` (contents) and `stdlib::free`
 - **Arguments:**
-- **Return:**
-- **Requires:**
+  - `lst (t_list *)`: Pointer to the first node of the list
+  - `void (*del)(void *)`: Function to delete the contents of the
+    pointer
+- **Return:** (`void`)
+- **Requires:** `stdlib::free`, `libft::t_list`
 
 ### ft_lstclear
 
-- **Description:**
+`void ft_lstclear(t_list **lst, void (*del)(void *))`
+
+- **Description:** Deletes the given node `lst` and the next ones,
+  freeing the memory allocated using the function `del` (contents) and
+  `stdlib::free`
 - **Arguments:**
-- **Return:**
-- **Requires:**
+  - `lst (t_list **)`: Double pointer to the start of the list
+  - `void (*del)(void *)`: Function to delete the contents of the
+    pointer
+- **Return:** (`void`)
+- **Requires:** `stdlib::free`, `libft::t_list`
 
 ### ft_lstiter
 
-- **Description:**
+`void ft_lstiter(t_list *lst, void (*f)(void *))`
+
+- **Description:** Apply the function `f` through the contents of every
+  node of `lst`
 - **Arguments:**
-- **Return:**
-- **Requires:**
+  - `lst (t_list *)`: List to iterate
+  - `void (*f)(void *)`: Function to apply to the contents of the nodes
+- **Return:** (`void`)
+- **Requires:** `libft::t_list`
 
 ### ft_lstmap
 
-- **Description:**
+`t_list *ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))`
+
+- **Description:** Apply the function `f` through the contents of every
+  node of `lst`, allocating a new list
 - **Arguments:**
-- **Return:**
+  - `lst (t_list *)`: List to iterate
+  - `void *(*f)(void *)`: Function to apply to the contents of the nodes
+  - `void (*del)(void *)`: Function to apply if something fails, to
+    delete the list that we’re constructing
+- **Return:** (`t_list *`): List with the applied transformation. NULL
+  if fails
 - **Requires:**
+  `libft::(t_list, ft_lstnew, ft_lstclear, ft_lstadd_back)`
+  (`stdlib::(malloc, free)`)
