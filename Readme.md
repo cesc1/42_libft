@@ -49,6 +49,7 @@
     - [ft_lstclear](#ft_lstclear)
     - [ft_lstiter](#ft_lstiter)
     - [ft_lstmap](#ft_lstmap)
+    - [ft_printf](#ft_printf)
 
 # 1 About
 
@@ -604,3 +605,19 @@ Check type `t_list` in [libft.h](libft.h)
 - **Requires:**
   `libft::(t_list, ft_lstnew, ft_lstclear, ft_lstadd_back)`
   (`stdlib::(malloc, free)`)
+
+### ft_printf
+
+`int ft_printf(char const *str, ...)`
+
+- **Description:** Prints an output in console, according to a format
+  (%iducspxX%). Can use flags (width, space, .0-+#). More info in
+  [ft_print repo](https://github.com/cesc1/42_ft_printf)
+- **Arguments:**
+  - `str (char const *)`: String to print
+  - `...`: Extra arguments, if using formatting
+- **Return:** (`int`): Number of characters printed. -1 if fails
+- **Requires:**
+  - `stdlib::(malloc, free)`
+  - `stdarg(va_start, va_arg, va_copy, va_end)`
+  - `libft::(ft_strchr, ft_strlen, ft_strlcpy, ft_putchar_fd, ft_putstr_fd, ft_isdigit, ft_atoi, ft_itoa, ft_substr, ft_strdup)`

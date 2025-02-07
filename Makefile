@@ -12,7 +12,8 @@
 
 NAME = libft.a
 
-HEAD = libft.h
+HEAD = libft.h \
+       printf_utils.h
 SRCS = ft_isalpha.c \
        ft_isdigit.c \
        ft_isalnum.c \
@@ -55,7 +56,15 @@ SRCS = ft_isalpha.c \
        ft_lstdelone_bonus.c \
        ft_lstclear_bonus.c \
        ft_lstiter_bonus.c \
-       ft_lstmap_bonus.c
+       ft_lstmap_bonus.c \
+       printf.c \
+       printf_utils.c \
+       printf_cs.c \
+       printf_cs_print.c \
+       printf_cs_print_d.c \
+       printf_cs_print_s.c \
+       printf_cs_print_x.c \
+       printf_cs_print_utils.c
 
 OBJS = $(patsubst %.c, %.o, $(SRCS))
 
