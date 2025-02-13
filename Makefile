@@ -13,7 +13,8 @@
 NAME = libft.a
 
 HEAD = libft.h \
-       printf_utils.h
+       printf_utils.h \
+       get_next_line.h
 SRCS = ft_isalpha.c \
        ft_isdigit.c \
        ft_isalnum.c \
@@ -64,7 +65,9 @@ SRCS = ft_isalpha.c \
        printf_cs_print_d.c \
        printf_cs_print_s.c \
        printf_cs_print_x.c \
-       printf_cs_print_utils.c
+       printf_cs_print_utils.c \
+       get_next_line.c \
+       get_next_line_utils.c
 
 OBJS = $(patsubst %.c, %.o, $(SRCS))
 
