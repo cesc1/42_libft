@@ -39,6 +39,8 @@
     - [ft_putstr_fd](#ft_putstr_fd)
     - [ft_putendl_fd](#ft_putendl_fd)
     - [ft_putnbr_fd](#ft_putnbr_fd)
+    - [ft_printf](#ft_printf)
+    - [get_next_line](#get_next_line)
   - [2.3 List functions](#23-list-functions)
     - [ft_lstnew](#ft_lstnew)
     - [ft_lstadd_front](#ft_lstadd_front)
@@ -49,7 +51,6 @@
     - [ft_lstclear](#ft_lstclear)
     - [ft_lstiter](#ft_lstiter)
     - [ft_lstmap](#ft_lstmap)
-    - [ft_printf](#ft_printf)
 
 # 1 About
 
@@ -493,6 +494,38 @@ use in future projects.
   otherwise
 - **Requires:** `libft::ft_putchar_fd` (`unistd::write`)
 
+### ft_printf
+
+`int ft_printf(char const *str, ...)`
+
+- **Description:** Prints an output in console, according to a format
+  (%iducspxX%). Can use flags (width, space, .0-+#). More info in
+  [ft_print repo](https://github.com/cesc1/42_ft_printf)
+- **Arguments:**
+  - `str (char const *)`: String to print
+  - `...`: Extra arguments, if using formatting
+- **Return:** (`int`): Number of characters printed. -1 if fails
+- **Requires:**
+  - `stdlib::(malloc, free)`
+  - `stdarg(va_start, va_arg, va_copy, va_end)`
+  - `libft::(ft_strchr, ft_strlen, ft_strlcpy, ft_putchar_fd, ft_putstr_fd, ft_isdigit, ft_atoi, ft_itoa, ft_substr, ft_strdup)`
+
+### get_next_line
+
+`char *get_next_line(int fd)`
+
+- **Description:** Reads a line from a file descriptor, returning this
+  line as a malloc alloated string. The user needs to keep reading the
+  file until the end, and needs to handle the memory of the return value
+  (free when necessary).
+- **Arguments:**
+  - `fd (int)`: File descriptor to read. It needs to be opened to read.
+- **Return:** `(char *)`: String allocated with malloc.
+- **Requires:**
+  - `stdlib::(malloc, free, NULL, size_t)`
+  - `unistd::read`
+  - `sys/types::(ssize_t)`
+
 ## 2.3 List functions
 
 Check type `t_list` in [libft.h](libft.h)
@@ -605,19 +638,3 @@ Check type `t_list` in [libft.h](libft.h)
 - **Requires:**
   `libft::(t_list, ft_lstnew, ft_lstclear, ft_lstadd_back)`
   (`stdlib::(malloc, free)`)
-
-### ft_printf
-
-`int ft_printf(char const *str, ...)`
-
-- **Description:** Prints an output in console, according to a format
-  (%iducspxX%). Can use flags (width, space, .0-+#). More info in
-  [ft_print repo](https://github.com/cesc1/42_ft_printf)
-- **Arguments:**
-  - `str (char const *)`: String to print
-  - `...`: Extra arguments, if using formatting
-- **Return:** (`int`): Number of characters printed. -1 if fails
-- **Requires:**
-  - `stdlib::(malloc, free)`
-  - `stdarg(va_start, va_arg, va_copy, va_end)`
-  - `libft::(ft_strchr, ft_strlen, ft_strlcpy, ft_putchar_fd, ft_putstr_fd, ft_isdigit, ft_atoi, ft_itoa, ft_substr, ft_strdup)`
