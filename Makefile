@@ -69,22 +69,22 @@ SRCS = ft_isalpha.c \
        get_next_line.c \
        get_next_line_utils.c
 
-OBJS = $(patsubst %.c, %.o, $(SRCS))
+OBJS = $(SRCS:.c=.o)
+DEPS = $(SRCS:.c=.d)
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
-
+CFLAGS = -Wall -Wextra -Werror -MMD -MP -g
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(HEAD) Makefile
+$(NAME): $(OBJS) Makefile
 	ar rcs $(NAME) $(OBJS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(DEPS)
 
 fclean: clean
 	rm -f $(NAME)
@@ -92,6 +92,8 @@ fclean: clean
 re: fclean all
 
 mc: all clean
+
+-include $(DEPS)
 
 .PHONY: all clean fclean re mc
 
