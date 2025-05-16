@@ -93,6 +93,9 @@ re: fclean all
 
 mc: all clean
 
+export_srcs:
+	@echo SRCS
+
 -include $(DEPS)
 
 .PHONY: all clean fclean re mc
