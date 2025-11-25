@@ -70,6 +70,10 @@ SRC = ft_isalpha.c \
        get_next_line.c \
        get_next_line_utils.c
 
+INCLUDE := libft.h \
+		   get_next_line.h \
+		   printf_utils.h
+
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 DEP = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.d))
 
@@ -94,10 +98,12 @@ fclean: clean
 
 re: fclean all
 
-export_dep:
-	@echo $(DEP)
+export_src:
+	@echo \
+		$(addprefix $(SRC_DIR)/, $(SRC)) \
+		$(addprefix $(INCLUDE_DIR)/, $(INCLUDE))
 
 -include $(DEP)
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re export_src
 
