@@ -10,12 +10,13 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libft.a
+NAME := libft.a
 
-HEAD = libft.h \
-       printf_utils.h \
-       get_next_line.h
-SRCS = ft_isalpha.c \
+SRC_DIR := src
+OBJ_DIR := obj
+INCLUDE_DIR := include
+
+SRC = ft_isalpha.c \
        ft_isdigit.c \
        ft_isalnum.c \
        ft_isascii.c \
@@ -69,34 +70,34 @@ SRCS = ft_isalpha.c \
        get_next_line.c \
        get_next_line_utils.c
 
-OBJS = $(SRCS:.c=.o)
-DEPS = $(SRCS:.c=.d)
+OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
+DEP = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.d))
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -MMD -MP -g
+IFLAGS = -I$(INCLUDE_DIR)
+CFLAGS = -Wall -Wextra -Werror -MMD -MP -g $(IFLAGS)
 
 all: $(NAME)
 
-$(NAME): $(OBJS) Makefile
-	ar rcs $(NAME) $(OBJS)
+$(NAME): $(OBJ)
+	ar rcs $(NAME) $(OBJ)
 
-%.o: %.c
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c Makefile
+	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
-	rm -f $(OBJS) $(DEPS)
+	rm -rf $(OBJ_DIR)
 
 fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
 
-mc: all clean
+export_dep:
+	@echo $(DEP)
 
-export_srcs:
-	@echo SRCS
+-include $(DEP)
 
--include $(DEPS)
-
-.PHONY: all clean fclean re mc
+.PHONY: all clean fclean re
 
